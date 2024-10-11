@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-8erhz$y_2k21r)jbjb)1yjk7jh3vat$5rr6-e9pn3p(1i&g7yn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['todolist.cloudboosterlab.org']
 LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'authentication.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
