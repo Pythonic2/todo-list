@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 {%block 'content'%}
 <h1>Bem Vindo {{usuario}}</h1>
-<span><a href="#">Sair</a></span>
+<span><a href="{% url 'sair'%}">Sair</a></span>
 <div class="container">
     <form hx-post="{% url 'criar'%}" class="form-control" hx-trigger="submit" hx-target="#tarefas" hx-swap="innerHTML">
         {%csrf_token%}
