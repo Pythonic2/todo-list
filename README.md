@@ -11,7 +11,7 @@ A app Authentication é responsável pela administração do usuário, incluindo
 forms.py: Contém os formulários para registro e login de usuário.
 views.py: Realiza a comunicação entre os modelos e os templates.
 
-Tarefa
+# Tarefa
 A app Tarefa gerencia toda a lógica de negócios relacionada ao gerenciamento de tarefas. Segue os mesmos princípios da app Authentication, mas:
 
 Não possui um forms.py, pois utiliza HTMX para dinamizar a aplicação.
