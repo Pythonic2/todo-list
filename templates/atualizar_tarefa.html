@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{%block 'content'%}
+<div class="container">
+    <form action="{% url 'editar' tarefa.id%}" method="POST">
+        {%csrf_token%}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titulo da tarefa" name="titulo" value="{{tarefa.titulo}}">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" name="descricao" value="{{tarefa.descricao}}">
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name='concluida' id="flexCheckChecked" {{checked}}>
+            <label class="form-check-label" for="flexCheckChecked">
+              Concluida
+            </label>
+           
+          </div>
+          <input type="submit" value="Cadastrar" class="btn btn-primary">
+    </form>
+
+</div
+{%endblock%}

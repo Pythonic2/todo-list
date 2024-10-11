@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+
+{%block 'content'%}
+<div class="container">
+    <form action="" class="form-control">
+        {{form}}
+        <input type="submit" value="Entrar" class="btn btn-primary">
+        <p>Não tem conta ? <a href="{% url 'register'%}">Click Aqui!!!</a></p>
+      </form>
+  </div>
+{%endblock%}

@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16.3
+    restart: always
+    env_file:
+      - stack.env
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_PORT: ${DB_PORT}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pi_default
+
+  unimed-todo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    pull_policy: build
+    restart: always
+    ports:
+      - "8006:8006"
+    env_file:
+      - stack.env
+    networks:
+      - pi_default
+    volumes:
+      - teste_data:/var/lib/postgresql/data
+    depends_on:
+      - postgres
+
+  test:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py test
+    depends_on:
+      - unimed-todo
+
+volumes:
+  postgres_data:
+  teste_data:
+
+networks:
+  pi_default:
+    external: true

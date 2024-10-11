@@ -1,0 +1,39 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Descricao</th>
+        <th scope="col">Criada</th>
+        <th scope="col">Editada</th>
+        <th scope="col">Concluida</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Apagar</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for tarefa in tarefas%}
+            <tr>
+                <th scope="row">{{tarefa.id}}</th>
+                <td>{{tarefa.titulo}}</td>
+                <td>{{tarefa.descricao}}</td>
+                <td>{{tarefa.criada}}</td>
+
+                {%if tarefa.editada%}
+                    <td>{{tarefa.editada}}</td>
+                {%else%}
+                  <td>Sem Atualizações</td>
+                {%endif%}
+                {% if tarefa.concluida%}
+                    <td> <span class="badge text-bg-success">Concluída</span>
+                    </td>
+                {%else%}
+                    <td>Em Progresso</td>
+                {%endif%}
+                <td><a href="{% url 'editar' tarefa.id%}">Editar</a></td>
+                <td><a href="#" hx-post="{% url 'deletar' tarefa.id%}" hx-trigger="click" hx-target="#tarefas" hx-headers='{"X-CSRFToken":"{{csrf_token}}"}'>Apagar</a></td>
+            </tr>
+        {%endfor%}
+      
+    </tbody>
+  </table>
