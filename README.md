@@ -18,13 +18,13 @@ Não possui um forms.py, pois utiliza HTMX para dinamizar a aplicação.
 Não utiliza Class-Based Views (CBV), optando por uma abordagem mais simples.
 
 # Configuração do Docker
-Dockerfile e docker-compose.yml
-O Dockerfile e o docker-compose.yml foram adaptados para subir em uma nuvem própria que já possui uma rede configurada. Caso você não tenha uma rede, será necessário:
+(removendo network)
+você precisa apenas criar um .env na raiz do projeto com os segiuntes itens: 
+DB_NAME=nome_banco;
+DB_USER=nome_user;
+DB_PASSWORD=senha;
+DB_PORT=5432;
+DB_HOST=postgres;
 
-Adaptar o docker-compose.yml para criar uma nova rede.
-O projeto já inclui um serviço Postgres, mas normalmente, você deve ter um contêiner Postgres rodando na mesma rede e lembre-se das envs.
-
-# Para instalar as Dependencias
-pip install -r requirements.txt
-para subit o container após vc adptar o docker-compose.yml
+# PARA RODAR LOCAL:
 docker-compose up
