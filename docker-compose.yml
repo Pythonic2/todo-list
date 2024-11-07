@@ -19,29 +19,29 @@ services:
       - pi_default
 
 unimed-todo:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    pull_policy: build
-    restart: always
-    ports:
-      - "8006:8006"
-    env_file:
-      - stack.env
-    networks:
-      - pi_default
-    volumes:
-      - teste_data:/var/lib/postgresql/data
-    depends_on:
-      - postgres
+  build:
+    context: .
+    dockerfile: Dockerfile
+  pull_policy: build
+  restart: always
+  ports:
+    - "8006:8006"
+  env_file:
+    - stack.env
+  networks:
+    - pi_default
+  volumes:
+    - teste_data:/var/lib/postgresql/data
+  depends_on:
+    - postgres
 
-  test:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    command: python manage.py test
-    depends_on:
-      - unimed-todo
+test:
+  build: 
+    context: .
+    dockerfile: Dockerfile
+  command: python manage.py test
+  depends_on:
+    - unimed-todo
 
 volumes:
   postgres_data:
