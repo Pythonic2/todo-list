@@ -5,18 +5,16 @@ services:
     image: postgres:16.3
     restart: always
     env_file:
-      - stack.env
+      - .env
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_PORT: ${DB_PORT}
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - pi_default
 
   unimed-todo:
     build:
@@ -27,13 +25,15 @@ services:
     ports:
       - "8006:8006"
     env_file:
-      - stack.env
-    networks:
-      - pi_default
+      - .env
     volumes:
       - teste_data:/var/lib/postgresql/data
     depends_on:
       - postgres
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8006"
 
   test:
     build: 
@@ -46,7 +46,3 @@ services:
 volumes:
   postgres_data:
   teste_data:
-
-networks:
-  pi_default:
-    external: true
